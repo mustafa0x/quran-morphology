@@ -37,6 +37,7 @@ fixes = [
     (0, 'ROOT:نوس', 'ROOT:أنس'),
     (0, 'ROOT:ندو', 'ROOT:ندي'),  # Fix root of نداء, etc.
     (0, 'PN|LEM:عَاد|ROOT:عود', 'PN|LEM:عَاد|ROOT:عدو'),  # The root of عاد is عدو
+    (0, 'ROOT:معن', 'ROOT:عون'),
 
     # Make implicit attributes explicit
     # IMPF: mark as IND if MOOD not set
