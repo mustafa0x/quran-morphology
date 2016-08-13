@@ -254,6 +254,10 @@ fixes = [
     # Fix gender and grammatical person
     (1, r'(33:48:2:1.*2)F(S.*)', r'\1M\2'),
     (1, r'(55:50:3:1.*)\|2(FD)', r'\1|3\2'),
+
+    # Lemma spelling fixes
+    # Remove madds
+    (1, r'(LEM:[^|\n]+)ٓ', r'\1'),
 ]
 
 f = 'quranic-corpus-morphology-0.4-ar.txt'
