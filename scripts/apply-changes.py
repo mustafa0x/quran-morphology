@@ -93,6 +93,10 @@ fixes = [
     # pronoun - as they're gender indifferent.
     (1, r'((IMPF|IMPV|POS:[^V]).*\n.*PRON:\d?)[MF]D', r'\1D'),
 
+    # اطمأنّ is quad, IV
+    (0, 'ROOT:طمن', 'ROOT:طمأن'),
+    (0, 'XII', 'IV'),
+
     # REL fixes
     # الذي is never COND
     (0, 'COND\tSTEM|POS:COND|LEM:الَّذِى', 'REL\tSTEM|POS:REL|LEM:الَّذِى'),
