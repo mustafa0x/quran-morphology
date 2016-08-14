@@ -258,6 +258,14 @@ fixes = [
     # Lemma spelling fixes
     # Remove madds
     (1, r'(LEM:[^|\n]+)ٓ', r'\1'),
+    # Standardize hamzas
+    (0, 'LEM:نَـَٔا', 'LEM:نَأَى'), # Edge case
+    (1, r'(LEM:[^|\n]+[^ِ])ـَٔا', r'\1آ'),
+    (1, r'(LEM:[^|\n]+ْ)ـٔ\|', r'\1ء|'),
+    (0, 'LEM:مَسْـُٔول', 'LEM:مَسْئُول'),        # Edge case
+    (0, 'LEM:اسْتَيْـَٔسَ', 'LEM:اسْتَيْأَسَ'),  # Edge case
+    (1, r'(LEM:[^|\n]+[^ي][^يِ])ـٔ(?!ِ)', r'\1أ'),  # Inverse of: (ِـ|ي.?ـ|ـِٔ)
+    (1, r'(LEM:[^|\n]+)ـٔ', r'\1ئ'),
 ]
 
 f = 'quranic-corpus-morphology-0.4-ar.txt'
