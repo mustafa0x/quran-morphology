@@ -21,6 +21,8 @@ def split_dem(m):
     form = addr_forms[addr[:3]] if addr[:3] == 'كُم' and len(addr) < 5 else addr_forms[addr]
     return out + tpl % (m.group(1), i, addr, 'ADDR', 'ADDR:') + form
 
+verb_forms = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI']
+
 fixes = [
     # ADJ is not a specific form of noun,
     # rather it is dependent on where it is in the sentence.
@@ -270,6 +272,16 @@ fixes = [
     (0, 'LEM:اسْتَيْـَٔسَ', 'LEM:اسْتَيْأَسَ'),  # Edge case
     (1, r'(LEM:[^|\n]+[^ي][^يِ])ـٔ(?!ِ)', r'\1أ'),  # Inverse of: (ِـ|ي.?ـ|ـِٔ)
     (1, r'(LEM:[^|\n]+)ـٔ', r'\1ئ'),
+
+    # General tag modifications
+    # Mark verb forms using Arabic numerals
+    (1, r'\(([IVX]+)\)', lambda m: 'VF:' + str(verb_forms.index(m.group(1)) + 1)),
+    # Remove superflous STEM & POS tag
+    (1, r'STEM\|POS:[^|\n]+\|?', ''),
+    # Move PASS after VF
+    (1, r'(PASS\|)(VF:[^|\n]+\|)', r'\2\1'),
+    # Move ADJ to end
+    (1, r'(ADJ)\|(.*$)', r'\2|\1'),
 ]
 
 f = 'quranic-corpus-morphology-0.4-ar.txt'
