@@ -284,6 +284,9 @@ fixes = [
     (1, r'(ADJ)\|(.*$)', r'\2|\1'),
     # Move ROOT before LEM
     (1, r'(LEM:[^|\n]+)\|(ROOT:[^|\n]+)', r'\2|\1'),
+
+    # LEMs: use ي (with dots) instead of ى
+    (1, r'(LEM:[^|\n]+ِ)ى', r'\1ي'),
 ]
 
 f = 'quranic-corpus-morphology-0.4-ar.txt'
