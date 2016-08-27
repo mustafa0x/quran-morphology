@@ -51,9 +51,7 @@ fixes = [
 
     # Root & Lemma spelling fixes:
     # Replace ا with أ in roots
-    (0, 'ROOT:ا', 'ROOT:أ'),
-    (1, r'(ROOT:.)ا(.\|)', r'\1أ\2'),
-    (1, r'(ROOT:..)ا\|', r'\1أ|'),
+    (1, r'(ROOT:[^|\n]*)ا', r'\1أ'),
     (0, 'ROOT:هأت', 'ROOT:هات'),  # An exception to the above
     # Remove Uthmani spelling for lemmas
     (0, 'LEM:ٱ', 'LEM:ا'),
@@ -125,7 +123,7 @@ fixes = [
     (0, 'ROOT:مرر|MD', 'ROOT:مرر|FD'), # مرتان is F
 
     # كَم fixes
-    (0, r'LEM:كَم|NOM', 'LEM:كَم|ACC'),
+    (0, 'LEM:كَم|NOM', 'LEM:كَم|ACC'),
     (1, r'INTG(\tSTEM\|POS:)INTG(\|LEM:كَم)', r'N\1N\2|ACC'),
     (1, r'(2:249:49|53:26:1)(.*)LEM:كَم\|ACC', r'\1\2LEM:كَم|NOM'),
     (1, r'(2:211:4|2:259:24|18:19:8|23:112:2)(.*)N\tSTEM\|POS:N', r'\1\2INTG\tSTEM|POS:INTG'),
