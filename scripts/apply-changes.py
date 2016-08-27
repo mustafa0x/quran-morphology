@@ -282,6 +282,8 @@ fixes = [
     (1, r'(PASS\|)(VF:[^|\n]+\|)', r'\2\1'),
     # Move ADJ to end
     (1, r'(ADJ)\|(.*$)', r'\2|\1'),
+    # Move ROOT before LEM
+    (1, r'(LEM:[^|\n]+)\|(ROOT:[^|\n]+)', r'\2|\1'),
 ]
 
 f = 'quranic-corpus-morphology-0.4-ar.txt'
