@@ -285,6 +285,9 @@ fixes = [
 
     # LEMs: use ي (with dots) instead of ى
     (1, r'(LEM:[^|\n]+ِ)ى', r'\1ي'),
+    # LEMs: remove harakah from last character
+    (1, r'(\tN\t.*LEM:[^|\n]+)[ً-ِْ]\|', r'\1|'),
+    (1, r'(LEM:الْيَسَع)َ', r'\1'),
 ]
 
 f = 'quranic-corpus-morphology-0.4-ar.txt'
