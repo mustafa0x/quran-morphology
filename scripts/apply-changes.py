@@ -61,6 +61,8 @@ fixes = [
     (0, 'LEM:رَءَا', 'LEM:رَأَى'),
     (1, r'(LEM:لَدَ)ي', r'\1ى'),
     (0, 'LEM:إِين', 'LEM:إِن'),
+    (1, r'(LEM:ادَّٰرَ)ْٰٔ', r'\1أَ'),
+    (1, r'(LEM:لَٰكِن)\|', r'\1ّ|'),
     # Remove '2' from lemmas; the root distinguishes
     (1, r'(LEM:[^|\n]+)2', r'\1'),
     # Remove ّ from first letter of lemma (caused by idghaam or اللام الشمسية)
