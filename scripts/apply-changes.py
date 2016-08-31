@@ -290,6 +290,17 @@ fixes = [
     # LEMs: remove harakah from last character
     (1, r'(\tN\t.*LEM:[^|\n]+)[ً-ِْ]\|', r'\1|'),
     (1, r'(LEM:الْيَسَع)َ', r'\1'),
+
+    # LEMs: small alifs -> regular alif
+    (1, r'ىٰ(?=$|\|)', r'ى'),
+    (1, r'(LEM:[^|\n]+)ىٰ', r'\1ا'),  # Edge case; occurs in 5 words
+    (1, r'(LEM:[^|\n]+)وٰ', r'\1ا'),  # Edge case; occurs in 8 words
+    (1, r'(LEM:رِبَا)ا', r'\1'),
+    # Replace all small alifs; remove superfluous fatha preceding alif
+    # Use lambda as some LEMs have >1 small alif
+    (1, r'LEM:[^|\n]+', lambda m: m.group(0).replace('ٰ', 'ا').replace('َا', 'ا')),
+    # Add back small alef to these edge cases
+    (1, r'LEM:(لاكِن|إِلاه|رَحْمان)', lambda m: m.group(0).replace('ا', 'ٰ')),
 ]
 
 f = 'quranic-corpus-morphology-0.4-ar.txt'
