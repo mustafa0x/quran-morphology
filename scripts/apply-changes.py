@@ -301,6 +301,12 @@ fixes = [
     (1, r'LEM:[^|\n]+', lambda m: m.group(0).replace('ٰ', 'ا').replace('َا', 'ا')),
     # Add back small alef to these edge cases
     (1, r'LEM:(لاكِن|إِلاه|رَحْمان)', lambda m: m.group(0).replace('ا', 'ٰ')),
+
+    # LEMs: singularize plural forms
+    (1, r'(LEM:.*)ات(?=\|.*FP)', r'\1َة'),
+    # Edge cases of the above
+    (0, 'LEM:بَنَة', 'LEM:بِنْت'),
+    (0, 'LEM:فَتَيَة', 'LEM:فَتاة'),
 ]
 
 f = 'quranic-corpus-morphology-0.4-ar.txt'
