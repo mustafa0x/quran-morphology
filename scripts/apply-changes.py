@@ -104,7 +104,7 @@ fixes = [
     (0, 'LEM:مَنَوٰة', 'LEM:مَنَوٰة|ROOT:مني'),
     (0, 'LEM:جُودِىّ', 'LEM:جُودِىّ|ROOT:جود'),
     (1, r'(LEM:مُحَمَّد|LEM:أَحْمَد)', r'\1|ROOT:حمد'),
-    (1, r'(LEM:ـَٰٔن)', r'\1|ROOT:أون'),  # الآن
+    (0, 'LEM:ـَٰٔن', 'ROOT:أون|LEM:آن'),  # الآن
     (0, 'LEM:يَهُودِيّ', 'LEM:يَهُود|ROOT:هود'), # Fix LEM, add root
 
     # Remove gender from all dual pronouns - except PERF's subject
