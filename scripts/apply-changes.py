@@ -8,6 +8,22 @@ Applies changes to quranic-corpus-morphology-0.4-ar.txt.
 See: https://github.com/mustafa0x/quran-morphology
 """
 
+mp_ignore = [
+    'مِسْكِين', 'يَمِين', 'عِضِين', 'سَمِين', 'عِزِين', 'حُصُون',
+    'قَرِين', 'سِنِين', 'ثَمانِين', 'عِشْرُون', 'خَمْسِين', 'سِتِّين',
+]
+mp_add_yaa = [
+    'مُؤْتُون', 'مُتَّقِين', 'مُهْتَدُون', 'مُوفُون', 'مُعْتَدِين',
+    'مُغْنُون', 'مُلْقُون', 'مُنتَهُون', 'مُقْتَدُون', 'مُقْوِين',
+    'مُصَلِّين', 'مُمْتَرِين', 'مُفْتَرُون',
+    'عَمُون', 'عالِين', 'راعُون', 'ناهُون', 'باقِين', 'قالِين',
+    'غاوِين', 'بادُون', 'طاغِين', 'ساهُون', 'عافِين',
+]
+def singularize_mp(m):
+    if m.group(0) in mp_ignore:
+        return m.group(0)
+    return m.group(1) + ('ي' if m.group(0) in mp_add_yaa else '')
+
 def split_dem(m):
     addr_forms = {'كَ': 'M', 'كِ': 'F', 'كُمَا': 'D', 'كُم': 'MP', 'كُنَّ': 'FP'}
     tpl = '\n%s%s\t%s\t%s\tSUFFIX|+%s'
@@ -307,6 +323,7 @@ fixes = [
     # Edge cases of the above
     (0, 'LEM:بَنَة', 'LEM:بِنْت'),
     (0, 'LEM:فَتَيَة', 'LEM:فَتاة'),
+    (1, r'(?<=LEM:)(.*)(ُون|ِين)(?=\|.*MP)', singularize_mp),
 ]
 
 f = 'quranic-corpus-morphology-0.4-ar.txt'
