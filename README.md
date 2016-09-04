@@ -35,9 +35,12 @@ while v0.4 can be seen at [corpus.quran.com](corpus.quran.com)
 - Fixed lemma of لما (was لم in some occurrences).
 - Removed parentheses around ayah numbers.
 - Replaced all Buckwalter with the respective Arabic.
-- Made form I and IND explicit. This is especially important
-  as some verbs don't fit under any of the normal verb forms,
-  like نِعم and بِئس.
+- Made form I and IND explicit.
+- Removed superfluous STEM & POS tag
+- Reordered LEM, ROOT, PASS, VF, ADJ tags.
+- Labeled verb forms, marked them using Arabic numerals instead of Roman
+- Lemmas: singularized plural forms, removed madds, standardized hamzas,
+  and replaced small alifs with regular alifs.
 
 Among many other changes; see [apply-changes.py](scripts/apply-changes.py)
 for what exactly was changed and how.
