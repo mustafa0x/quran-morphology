@@ -319,6 +319,8 @@ fixes = [
     (1, r'LEM:(لاكِن|إِلاه|رَحْمان)', lambda m: m.group(0).replace('ا', 'ٰ')),
 
     # LEMs: singularize plural forms
+    # Properly mark some female plurals first
+    (1, r'(مَعْلُومات|مُعَقِّبات|سَيِّئات|سَوْءات|عَمّات|خالات)\|[FM]P?', r'\1|FP'),
     (1, r'(LEM:.*)ات(?=\|.*FP)', r'\1َة'),
     # Edge cases of the above
     (0, 'LEM:بَنَة', 'LEM:بِنْت'),
