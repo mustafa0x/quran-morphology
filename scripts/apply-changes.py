@@ -1,6 +1,3 @@
-# -*- coding: utf-8
-from __future__ import unicode_literals
-import io
 import re
 """
 Applies changes to quranic-corpus-morphology-0.4-ar.txt.
@@ -329,11 +326,11 @@ fixes = [
 ]
 
 f = 'quranic-corpus-morphology-0.4-ar.txt'
-text = io.open(f).read()
+text = open(f).read()
 for fix in fixes:
-    print 'Replacing ', fix[1]
+    print('Replacing ', fix[1])
     if fix[0]:
         text = re.sub(fix[1], fix[2], text, flags=re.M)
     else:
         text = text.replace(fix[1], fix[2])
-io.open(f, 'w', encoding='utf-8').write(text)
+open(f, 'w').write(text)
