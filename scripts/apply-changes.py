@@ -323,6 +323,17 @@ fixes = [
     (0, 'LEM:بَنَة', 'LEM:بِنْت'),
     (0, 'LEM:فَتَيَة', 'LEM:فَتاة'),
     (1, r'(?<=LEM:)(.*)(ُون|ِين)(?=\|.*MP)', singularize_mp),
+
+    (0, 'LEM:ثَقَلان', 'LEM:ثَقَل'),
+    (0, 'VF:2|ROOT:زحزح', 'VF:1|ROOT:زحزح'),
+    (1, r'(9:122:6:2\tلَوْلَا\t)COND', r'\1EXH'),
+
+    # عَلَا: fix LEM of VF:1; fix VF of LEM:تَعالَى
+    (1, r'((عَلَا?|تَعْلُ)\t.*LEM:)تَعالَى', r'\1عَلا'),
+    (1, r'VF:1(.*LEM:تَعالَى)', r'VF:6\1'),
+
+    # Split إِلَّا to COND, NEG in these 4 occurrences
+    (1, r'([\d:]+:)(\d)\t(إِ)(لَّا)\tRES\tLEM:إِلّا(\n.*MOOD:)(JUS|SUBJ)', lambda m: m.expand(r'\1\2\t\3\tCOND\tLEM:إِن\n\g<1>%s\t\4\tNEG\tLEM:لا\5JUS' % str(int(m.group(2)) + 1)))
 ]
 
 f = 'quranic-corpus-morphology-0.4-ar.txt'
