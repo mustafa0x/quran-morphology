@@ -4,10 +4,10 @@ This is a fork of [Quranic Arabic Corpus Morphology v0.4](http://corpus.quran.co
 "an annotated linguistic resource which shows the Arabic grammar,
 syntax and morphology for each word in the Holy Quran".
 
-The data here can be seen (in Arabic) at [furqan.co](furqan.co)
-([example root](http://furqan.co/#w=أتي&src=quran-roots),
-[example ayah morphology](http://furqan.co/#s=1&a=1&src=ayah-morph))
-while v0.4 can be seen at [corpus.quran.com](corpus.quran.com)
+The data here can be seen (in Arabic) at [furqan.co](https://furqan.co)
+([example root](https://furqan.co/quran-roots/أتي),
+[example ayah morphology](https://furqan.co/ayah-morph/1/1))
+while v0.4 can be seen at [corpus.quran.com](http://corpus.quran.com)
 ([example root](http://corpus.quran.com/qurandictionary.jsp?q=Aty),
 [example ayah morphology](http://corpus.quran.com/wordbyword.jsp?chapter=1&verse=1#(1:1:1))).
 
