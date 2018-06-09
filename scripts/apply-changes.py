@@ -34,6 +34,17 @@ def split_dem(m):
     form = addr_forms[addr[:3]] if addr[:3] == 'كُم' and len(addr) < 5 else addr_forms[addr]
     return out + tpl % (m.group(1), i, addr, 'ADDR', 'ADDR:') + form
 
+def verbs_fix(m):
+    m_str = m.group(0)
+    print(m_str)
+    if re.search(r'يُ...?ِ', m_str):
+        return m_str.replace('VF:1', 'VF:4')
+    elif re.search(r'يُ...َ', m_str):
+        return m_str.replace('VF:1', 'VF:1|PASS')
+    elif re.search(r'يُ..ا', m_str):
+        return m_str.replace('VF:1', 'VF:3')
+    return m_str
+
 verb_forms = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI']
 
 fixes = [
@@ -334,6 +345,9 @@ fixes = [
 
     # Split إِلَّا to COND, NEG in these 4 occurrences
     (1, r'([\d:]+:)(\d)\t(إِ)(لَّا)\tRES\tLEM:إِلّا(\n.*MOOD:)(JUS|SUBJ)', lambda m: m.expand(r'\1\2\t\3\tCOND\tLEM:إِن\n\g<1>%s\t\4\tNEG\tLEM:لا\5JUS' % str(int(m.group(2)) + 1)))
+
+    # Fix VF or PASS of some IMPF verbs
+    (1, r'\tيُ.*VF:1\|ROOT', verbs_fix),
 ]
 
 f = 'quranic-corpus-morphology-0.4-ar.txt'
