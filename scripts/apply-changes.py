@@ -382,6 +382,9 @@ fixes = [
 
     # Set the main POS (N, V, or P) when missing (all particles and some nouns)
     (1, r'\t([A-Z]+)\t(.*)', set_main_pos),
+
+    # The end in رأيتكم and رأيتك is ADDR, not PRON
+    (1, r'(LEM:رَأَى.*2MS.*\n.*\n.*\tك.*)PRON', r'\1ADDR'),
 ]
 
 f = 'quranic-corpus-morphology-0.4-ar.txt'
