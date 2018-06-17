@@ -344,10 +344,13 @@ fixes = [
     (1, r'VF:1(.*LEM:تَعالَى)', r'VF:6\1'),
 
     # Split إِلَّا to COND, NEG in these 4 occurrences
-    (1, r'([\d:]+:)(\d)\t(إِ)(لَّا)\tRES\tLEM:إِلّا(\n.*MOOD:)(JUS|SUBJ)', lambda m: m.expand(r'\1\2\t\3\tCOND\tLEM:إِن\n\g<1>%s\t\4\tNEG\tLEM:لا\5JUS' % str(int(m.group(2)) + 1)))
+    (1, r'([\d:]+:)(\d)\t(إِ)(لَّا)\tRES\tLEM:إِلّا(\n.*MOOD:)(JUS|SUBJ)', lambda m: m.expand(r'\1\2\t\3\tCOND\tLEM:إِن\n\g<1>%s\t\4\tNEG\tLEM:لا\5JUS' % str(int(m.group(2)) + 1))),
 
     # Fix VF or PASS of some IMPF verbs
     (1, r'\tيُ.*VF:1\|ROOT', verbs_fix),
+
+    # ك & أن -> كأن
+    (1, r'كَ\tP\t.*\n.*(أَن)\t.*', r'كَ\1\tACC\tLEM:كَأَنْ|SP:إِنّ'),
 ]
 
 f = 'quranic-corpus-morphology-0.4-ar.txt'
