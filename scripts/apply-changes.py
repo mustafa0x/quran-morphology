@@ -45,6 +45,14 @@ def verbs_fix(m):
         return m_str.replace('VF:1', 'VF:3')
     return m_str
 
+def pres_sufs(m):
+    tag, attrs = m.group(0).split('|')
+    for r in [['+', ''], ['n:EMPH', 'ن:EMPH'], ['VOC', 'م']]:
+        attrs = attrs.replace(r[0], r[1])
+    for r in [[r'([A-Z]+:|:[A-Z]+)', ''], [r'[ً-ْ]', ''], [r'([ء-ي]+)', r'LEM:\1']]:
+        attrs = re.sub(r[0], r[1], attrs)
+    return '%s|%s' % (tag[:4], attrs)
+
 verb_forms = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI']
 
 fixes = [
@@ -354,6 +362,9 @@ fixes = [
 
     # Special -> Family
     (0, 'SP:', 'FAM:'),
+
+    # Shorten to SUFF|PREF; remove superfluous attrs
+    (1, r'(SUFFIX|PREFIX).*', pres_sufs),
 ]
 
 f = 'quranic-corpus-morphology-0.4-ar.txt'
