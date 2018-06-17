@@ -53,6 +53,20 @@ def pres_sufs(m):
         attrs = re.sub(r[0], r[1], attrs)
     return '%s|%s' % (tag[:4], attrs)
 
+def set_main_pos(m):
+    attr = m.group(1)
+    if attr in ['N', 'V']:
+        return m.group(0)
+
+    if attr in ['PN', 'NV', 'DEM', 'REL', 'PRON', 'T', 'LOC']:
+        tag = 'N'
+    elif attr in ['COND', 'INTG']:
+        lem = re.search('(?<=LEM:)([ء-ْ]+)', m.group(2))
+        tag = 'N' if (lem and lem.group(1) not in ['لَو', 'إِن', 'إِمّا', 'لَوْلا', 'هَل']) else 'P'
+    else:
+        tag = 'P'
+    return '\t%s\t%s|%s' % (tag, attr, m.group(2))
+
 verb_forms = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI']
 
 fixes = [
@@ -365,6 +379,9 @@ fixes = [
 
     # Shorten to SUFF|PREF; remove superfluous attrs
     (1, r'(SUFFIX|PREFIX).*', pres_sufs),
+
+    # Set the main POS (N, V, or P) when missing (all particles and some nouns)
+    (1, r'\t([A-Z]+)\t(.*)', set_main_pos),
 ]
 
 f = 'quranic-corpus-morphology-0.4-ar.txt'
