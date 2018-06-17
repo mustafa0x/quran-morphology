@@ -351,6 +351,9 @@ fixes = [
 
     # ك & أن -> كأن
     (1, r'كَ\tP\t.*\n.*(أَن)\t.*', r'كَ\1\tACC\tLEM:كَأَنْ|SP:إِنّ'),
+
+    # Special -> Family
+    (0, 'SP:', 'FAM:'),
 ]
 
 f = 'quranic-corpus-morphology-0.4-ar.txt'
