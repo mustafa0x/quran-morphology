@@ -385,6 +385,9 @@ fixes = [
 
     # The end in رأيتكم and رأيتك is ADDR, not PRON
     (1, r'(LEM:رَأَى.*2MS.*\n.*\n.*\tك.*)PRON', r'\1ADDR'),
+
+    # A few cases of مع are marked as P
+    (0, 'P\tP|LEM:مَع', 'N\tLOC|LEM:مَع|ACC'),
 ]
 
 f = 'quranic-corpus-morphology-0.4-ar.txt'
