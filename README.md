@@ -11,11 +11,12 @@ while v0.4 can be seen at [corpus.quran.com](http://corpus.quran.com)
 ([example root](http://corpus.quran.com/qurandictionary.jsp?q=Aty),
 [example ayah morphology](http://corpus.quran.com/wordbyword.jsp?chapter=1&verse=1#(1:1:1))).
 
-- [quran-morphology.txt](quran-morphology.txt) can be reproduced by running [bw-to-ar.py](scripts/bw-to-ar.py)
+- [quran-morphology.txt-ar](quran-morphology.txt) can be reproduced by running [bw-to-ar.py](scripts/bw-to-ar.py)
   against [`quranic-corpus-morphology-0.4.txt`](http://corpus.quran.com/download/)
   then [apply-changes.py](scripts/apply-changes.py) against the outputted file.
-- [morphology-terms.json](morphology-terms.json) contains the terms used in
-  [quran-morphology.txt](quran-morphology.txt) with their respective meanings in Arabic.
+- [morphology-terms-ar.json](morphology-terms-ar.json) contains the terms used in
+  [quran-morphology-ar.txt](quran-morphology-ar.txt) with their respective meanings in Arabic.
+- [quran-morphology-bw.txt](quran-morphology-bw.txt) in buckwalter with parentheses for easier migration from v.04.
 
 ## Changes
 - Added roots to several words, especially four-letter words and PNs.
